@@ -6,7 +6,7 @@ class LessUrlManager(models.Manager):
         qs = super(LessUrlManager, self).all(*args, **kwargs).filter(active=True)
         return qs
 
-    def refrash_shortcodes(self):
+    def refresh_shortcodes(self):
         qs = LessUrl.objects.filter(id__gte=1)
         new_codes = 0
         for q in qs:
