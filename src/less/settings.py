@@ -25,7 +25,7 @@ SECRET_KEY = '5sncr3!xx6g!t7028_0%+ita)potw3by734(m3x4$m=&c_g$pp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['less.tk', 'www.less.tk', 'ssel.co', 'www.ssel.co', 'blog.less.tk']
 
 
 # Application definition
@@ -38,10 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_hosts',
+
     'shorter',
 ]
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,9 +53,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
 ROOT_URLCONF = 'less.urls'
+ROOT_HOSTCONF = 'less.hosts'
+DEFAULT_HOST = 'www'
+DEFAULT_REDIRECT_URL = "http://www.less.tk:8000"
 
 TEMPLATES = [
     {
@@ -120,3 +129,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+SHORTCODE_MAX = 11
+SHORTCODE_MIN = 5

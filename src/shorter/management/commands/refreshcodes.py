@@ -4,7 +4,7 @@ from shorter.models import LessUrl
 
 
 class Command(BaseCommand):
-    help = 'Refrash all codes'
+    help = 'Refresh all codes'
 
     #def add_arguments(self, parser):
     #    parser.add_argument('poll_id', nargs='+', type=int)

@@ -16,6 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from shorter.views import less_redirect_view, LessBasedView
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'a/(?P<shortcode>[\w-]+)', less_redirect_view),
+    url(r'b/(?P<shortcode>[\w-]+)', LessBasedView.as_view()),
 ]
