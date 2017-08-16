@@ -61,6 +61,7 @@ ROOT_URLCONF = 'less.urls'
 ROOT_HOSTCONF = 'less.hosts'
 DEFAULT_HOST = 'www'
 DEFAULT_REDIRECT_URL = "http://www.less.tk:8000"
+PARENT_HOST = "less.tk:8000"
 
 TEMPLATES = [
     {
