@@ -9,7 +9,7 @@ class HomeView(View):
     def get(self, request, *args, **kwargs):
         the_form = SubmitUrlForm()
         context = {
-            "title": "Less.co",
+            "title": "Less.tk",
             "form": the_form
         }
         return render(request, "shorter/home.html", context=context)
@@ -17,7 +17,7 @@ class HomeView(View):
     def post(self, request, *args, **kwargs):
         form = SubmitUrlForm(request.POST)
         context = {
-            "title": "Less.co",
+            "title": "Less.tk",
             "form": form
         }
         template = "shorter/home.html"
