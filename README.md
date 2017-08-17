@@ -1,5 +1,5 @@
 # For running: 
- - add `/etc/hosts` - 127.0.0.1 www.less.tk
+ - add `/etc/hosts` - `127.0.0.1 www.less.tk`
  - `pip install django-hosts` (https://django-hosts.readthedocs.io)
  - usage ver. django 1.11.4
  - python manage.py runserver
