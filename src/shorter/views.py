@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.views import View
 from .models import LessUrl
 from .forms import SubmitUrlForm
@@ -39,6 +39,10 @@ class HomeView(View):
 
 class LessBasedView(View):
     def get(self, request, shortcode=None, *args, **kwargs):
-        obj = get_object_or_404(LessUrl, shortcode=shortcode)
-        return HttpResponseRedirect(obj.url)
+        qs = LessUrl.objects.filter(shortcode__iexact=shortcode)
+        if qs.count() > 1 and qs.exists():
+            obj = qs.first()
+        #obj = get_object_or_404(LessUrl, shortcode=shortcode)
+            return HttpResponseRedirect(obj.url)
 
+        raise Http404

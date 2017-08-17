@@ -27,7 +27,7 @@ class LessUrlManager(models.Manager):
 class LessUrl(models.Model):
 
     url = models.CharField(max_length=220, validators=[validate_url])
-    shortcode = models.CharField(max_length=SHORTCODE_MAX, unique=True, blank=True)
+    shortcode = models.CharField(max_length=SHORTCODE_MAX, unique=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
@@ -40,6 +40,9 @@ class LessUrl(models.Model):
     def save(self, *args, **kwargs):
         if self.shortcode is None or self.shortcode == "":
             self.shortcode = create_shortcode(self)
+        if not 'http' in self.url:
+            self.url = 'http://' + self.url
+
         super(LessUrl, self).save(*args, **kwargs)
 
     def __unicode__(self):
