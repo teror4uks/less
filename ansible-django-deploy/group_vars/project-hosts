@@ -1,0 +1,51 @@
+#
+# system options
+#
+
+# admin open key
+admin_open_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC34reRw30HO6cjzGw3csYWg3VCTYeg3141nGhdh/miClYvO8+AOV2DdUylXZzEekGs9jPmdl/Cmy9IeQ2ELCuFBglw2tohkwQoPcDy4IPU2gPVdbwDO8rNtZB1eYFOk3qbQh8XfgMKPveZvBane7tUqSgSpSmOdf1IDUhmMEBAkuQJ1JoR1yCd6l2JL1q3VzdSc+hDzDpKSPPELCq+MrbI9IcCgTdBjgnZcOeq/3w9szvveb2UA3Gg2LCERJTMRVQUvvlda4GtVeOe4U7xYi11P/EexjX07bdshsbZ1OYsyqg8pbCKuH8dE7uhTT4RLO/j34tl5PFKlZgzusipZE/P administrator@linuxsider'
+
+# linux username
+username: dj_shortner
+
+# about password crypt
+# http://docs.ansible.com/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
+# or run `mkpasswd --method=SHA-512`
+# here crypted
+
+user_crypt_password: $6$CLdy53SWCPbnmXP$8ChqMGkqNbyRKB20xabk20EHA6Ghr.p./pogt7mK0UV4IqTXWPxC7fkng5gvd1knOZ0HHEMuA0tyTRx4vUIo71
+
+# really password
+user_password: Qwerty123
+
+user_homedir: "/home/{{ username }}"
+
+#
+# project options
+#
+
+# project slug ( if u have `example/manage.py` and example/example/settings.py` - `example` is project_slug)
+project_slug: less
+
+# url or list urls for nginx
+project_url: www.less.tk
+
+project_dir: "{{ user_homedir }}/projects/{{ project_slug }}"
+
+project_homedir: "{{ user_homedir }}/projects/{{ project_slug }}/{{ project_slug }}"
+
+# virtualenv name
+env: "{{ project_dir }}/env"
+
+# port for uwsgi, must be unique for each project
+uwsgi_port: 9000
+
+#
+# django settings
+#
+
+debug: True
+local_settings: 'local_settings.py'
+
+# set empty string if not used
+requirements: 'requirements.txt'

@@ -1,0 +1,10 @@
+[project-hosts]
+root ansible_ssh_host=172.30.96.23 ansible_ssh_user=root
+user ansible_ssh_host=172.30.96.23 ansible_ssh_user=dj_shortner
+
+[user-hosts]
+user
+
+[root-hosts]
+root
+

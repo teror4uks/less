@@ -1,0 +1,47 @@
+---
+- name: create project directory
+  file: path={{ project_dir }} state=directory
+
+- name: create logs directory
+  file: path={{ project_dir }}/logs state=directory
+
+- name: create project home directory
+  file: path={{ project_homedir }} state=directory
+
+- name: unarchive project archive
+  unarchive: src=/tmp/django_deploy.zip dest={{ user_homedir }}/projects
+
+#- name: create virtualenv3
+#  pip: requirements={{ project_homedir }}/requirements.txt
+#       executable=pip3
+#       virtualenv={{ env }} 
+#       virtualenv_command="/usr/bin/python3.5 -m venv" 
+#       virtualenv_site_packages=yes 
+
+- name: create virtenv
+  command: virtualenv -p python3.5 {{ env }} creates={{ env }}/bin/activate
+
+- name: install requirements
+  pip: requirements={{ project_homedir }}/requirements.txt
+       virtualenv={{ env }}
+
+- name: copy uwsg file
+  template: src=uwsgi.j2 dest={{ project_homedir }}/uwsgi.{{ project_slug }}.ini
+
+#- name: copy local_settings.py
+#  template: src=local_settings.py dest={{ project_homedir }}/{{ project_slug }}/{{ local_settings }}
+
+#- name: syncdb (for django<1.7)
+#  django_manage: command=syncdb virtualenv={{ env }} app_path={{ project_homedir }}
+
+- name: migrate database
+  django_manage: command=migrate virtualenv={{ env }}  app_path={{ project_dir }}
+
+- name: collectstatic
+  django_manage: command=collectstatic virtualenv={{ env }} app_path={{ project_dir }}
+
+- name: create media directory
+  file: path={{ project_dir }}/media state=directory
+
+- name: create `uploads` directory
+  file: path={{ project_dir }}/media/uploads state=directory
