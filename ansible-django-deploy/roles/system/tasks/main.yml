@@ -23,6 +23,8 @@
     - name: nginx
     - name: uwsgi
     - name: uwsgi-plugin-python
+    - name: zip
+    - name: unzip
 
 #- name: copy supervisor config
 #  template: src=supervisor.conf.j2 dest=/etc/supervisor/conf.d/{{ project_url }}.conf
@@ -40,6 +42,16 @@
 
 - name: add open key for connect this user
   lineinfile: dest="{{ user_homedir }}/.ssh/authorized_keys" owner="{{ username }}" group="{{ username }}" line="{{ admin_open_key }}"
+
+- name: add user to allow user for connect ssh
+  lineinfile:
+        dest='/etc/ssh/sshd_config'
+        regexp='^AllowUsers'
+        line='AllowUsers root {{ username }}'
+        state='present' 
+        backrefs='yes'
+  notify:
+    - restart ssh
 
 #- name: Create MySQL user
 #  mysql_user: >
@@ -67,8 +79,8 @@
 
 - name: copy nginx config
   template: src=nginx.j2 dest=/etc/nginx/sites-available/{{ project_url }}
-  notify:
-    - restart nginx
+#  notify:
+#    - restart nginx
 
 - name: create symlink nginx config
   file: src=/etc/nginx/sites-available/{{ project_url }} dest=/etc/nginx/sites-enabled/{{ project_url }} state=link
