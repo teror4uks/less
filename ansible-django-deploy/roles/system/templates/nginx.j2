@@ -1,5 +1,8 @@
+upstream django {
+     server unix:///home/dj_shortner/projects/less.sock; 
+}
 server {
-
+	listen 80;
         root {{ project_dir }}/{{ project_slug }};
 
         access_log {{ project_dir }}/logs/nginx-access.log;
@@ -14,7 +17,7 @@ server {
 
         location / {
                 include uwsgi_params;
-                uwsgi_pass 127.0.0.1:{{ uwsgi_port }};
+                uwsgi_pass django;
         }
 
         location /static {

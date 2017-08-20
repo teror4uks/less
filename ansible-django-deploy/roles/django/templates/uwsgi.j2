@@ -1,10 +1,12 @@
 [uwsgi]
-chdir = {{ project_homedir }}
-env = DJANGO_SETTINGS_MODULE={{ project_slug }}.settings
-socket = 127.0.0.1:{{ uwsgi_port }}
-module = {{ project_slug }}.wsgi:application
+chdir = {{ project_dir }}
+# env = DJANGO_SETTINGS_MODULE={{ project_slug }}.settings
+socket = {{ uwsgi_socket }}
+module = {{ project_slug }}.wsgi
+callable = application
 master = True
 pidfile = {{ project_slug }}.pid
 home = {{ env }}
 vacuum = True
-plugins = python27
+plugins = python35
+chmod-socket=755

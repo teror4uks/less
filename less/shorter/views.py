@@ -39,10 +39,13 @@ class HomeView(View):
 
 class LessBasedView(View):
     def get(self, request, shortcode=None, *args, **kwargs):
-        qs = LessUrl.objects.filter(shortcode__iexact=shortcode)
-        if qs.count() > 1 and qs.exists():
-            obj = qs.first()
-        #obj = get_object_or_404(LessUrl, shortcode=shortcode)
-            return HttpResponseRedirect(obj.url)
+        #qs = LessUrl.objects.filter(shortcode__iexact=shortcode)
+        #print(qs)
+        #if qs.count() > 1 and qs.exists():
+        #    obj = qs.first()
+        #    print(obj.url)
 
-        raise Http404
+        obj = get_object_or_404(LessUrl, shortcode=shortcode)
+        print(obj)
+        return HttpResponseRedirect(obj.url)
+

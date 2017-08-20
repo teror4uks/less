@@ -19,6 +19,7 @@
     - name: python-virtualenv
     - name: python-pip
     - name: python3-venv
+    - name: uwsgi-plugin-python3
     - name: nginx
     - name: uwsgi
     - name: uwsgi-plugin-python

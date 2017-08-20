@@ -6,5 +6,5 @@ from shorter.views import HomeView, LessBasedView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', HomeView.as_view()),
-    url(r'(?P<shortcode>[\w-]+)/$', LessBasedView.as_view(), name='scode'),
+    url(r'(?P<shortcode>[\w-]+)$', LessBasedView.as_view(), name='scode'),
 ]

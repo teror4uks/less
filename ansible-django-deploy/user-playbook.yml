@@ -7,11 +7,11 @@
 - hosts: root-hosts
   sudo: true
   tasks:
-    - name: restart site in supervisor
-      supervisorctl: name={{ project_url }} state=restarted
+#    - name: restart site in supervisor
+#      supervisorctl: name={{ project_url }} state=restarted
 
-    - name: restart mysql
-      service: name=mysql state=restarted enabled=yes
+#    - name: restart mysql
+#      service: name=mysql state=restarted enabled=yes
 
     - name: restart nginx
       service: name=nginx state=restarted enabled=yes

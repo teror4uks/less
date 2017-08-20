@@ -3,7 +3,7 @@
 #
 
 # admin open key
-admin_open_key: ''
+admin_open_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC34reRw30HO6cjzGw3csYWg3VCTYeg3141nGhdh/miClYvO8+AOV2DdUylXZzEekGs9jPmdl/Cmy9IeQ2ELCuFBglw2tohkwQoPcDy4IPU2gPVdbwDO8rNtZB1eYFOk3qbQh8XfgMKPveZvBane7tUqSgSpSmOdf1IDUhmMEBAkuQJ1JoR1yCd6l2JL1q3VzdSc+hDzDpKSPPELCq+MrbI9IcCgTdBjgnZcOeq/3w9szvveb2UA3Gg2LCERJTMRVQUvvlda4GtVeOe4U7xYi11P/EexjX07bdshsbZ1OYsyqg8pbCKuH8dE7uhTT4RLO/j34tl5PFKlZgzusipZE/P administrator@linuxsider'
 
 # linux username
 username: dj_shortner
@@ -38,7 +38,9 @@ project_homedir: "{{ user_homedir }}/projects/{{ project_slug }}/{{ project_slug
 env: "{{ project_dir }}/env"
 
 # port for uwsgi, must be unique for each project
-uwsgi_port: 9000
+uwsgi_port: 8000
+
+uwsgi_socket: "{{ user_homedir }}/projects/{{ project_slug }}.sock"
 
 #
 # django settings
