@@ -84,3 +84,12 @@
 
 - name: create symlink nginx config
   file: src=/etc/nginx/sites-available/{{ project_url }} dest=/etc/nginx/sites-enabled/{{ project_url }} state=link
+
+- name: create folder vassals
+  file: path="/etc/uwsgi/vassals" owner="root" group=root state=directory
+
+- name: create symlink for emperator 
+  file: src="{{ user_homedir }}/projects/{{ project_slug }}/{{ project_slug }}/uwsgi.{{ project_slug }}.ini" dest="/etc/uwsgi/vassals/uwsgi.{{ project_slug }}.ini"
+
+- name: create service
+  template: src="shortner.service.j2" dest="/etc/systemd/system/shortner.service"
