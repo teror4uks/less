@@ -5,7 +5,9 @@ from .models import LessUrl
 from .forms import SubmitUrlForm
 # Create your views here.
 
+
 class HomeView(View):
+
     def get(self, request, *args, **kwargs):
         the_form = SubmitUrlForm()
         context = {
