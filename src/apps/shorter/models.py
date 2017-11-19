@@ -26,7 +26,11 @@ class LessUrlManager(models.Manager):
 
 class LessUrl(models.Model):
 
-    url = models.CharField(max_length=220, validators=[validate_url])
+    url = models.CharField(
+        max_length=220,
+        validators=[validate_url],
+        unique=True
+    )
     shortcode = models.CharField(max_length=SHORTCODE_MAX, unique=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
