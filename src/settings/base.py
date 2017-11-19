@@ -58,7 +58,9 @@ DEFAULT_HOST = 'www'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates/shorter-ext")],
+        'DIRS': [
+            os.path.join(BASE_DIR, "less/src/templates/shorter-ext"),
+            os.path.join(BASE_DIR, "less/src/apps/shorter")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -14,7 +14,8 @@ class HomeView(View):
             "title": "Less.tk",
             "form": the_form
         }
-        return render(request, "shorter/home.html", context=context)
+        print("REQUEST: ", request)
+        return render(request, "templates/shorter/home.html", context=context)
 
     def post(self, request, *args, **kwargs):
         form = SubmitUrlForm(request.POST)
