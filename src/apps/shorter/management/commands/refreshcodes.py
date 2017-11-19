@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 
-from shorter.models import LessUrl
+from src.apps.shorter.models import LessUrl
 
 
 class Command(BaseCommand):

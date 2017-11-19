@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.contrib import admin
 
-from shorter.views import HomeView, LessBasedView
+from src.apps.shorter.views import HomeView, LessBasedView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

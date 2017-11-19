@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class ShorterConfig(AppConfig):
-    name = 'shorter'
+    name = 'src.apps.shorter'

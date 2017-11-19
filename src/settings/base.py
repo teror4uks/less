@@ -31,10 +31,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    # custom apps
     'django_hosts',
-
-    'shorter',
+    'src.apps.shorter',
 ]
 
 MIDDLEWARE = [
@@ -51,8 +50,8 @@ MIDDLEWARE = [
     'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
-ROOT_URLCONF = 'less.urls'
-ROOT_HOSTCONF = 'less.hosts'
+ROOT_URLCONF = 'urls'
+ROOT_HOSTCONF = 'hosts'
 DEFAULT_HOST = 'www'
 
 TEMPLATES = [
@@ -71,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'less.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 
 # Database
