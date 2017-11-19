@@ -14,7 +14,6 @@ class HomeView(View):
             "title": "Less.tk",
             "form": the_form
         }
-        print("REQUEST: ", request)
         return render(request, "templates/shorter/home.html", context=context)
 
     def post(self, request, *args, **kwargs):
@@ -25,7 +24,6 @@ class HomeView(View):
         }
         template = "shorter/home.html"
         if form.is_valid():
-            print(form.cleaned_data)
             new_url = form.cleaned_data.get('url')
             obj, created = LessUrl.objects.get_or_create(url=new_url)
             context = {
@@ -43,6 +41,5 @@ class HomeView(View):
 class LessBasedView(View):
     def get(self, request, shortcode=None, *args, **kwargs):
         obj = get_object_or_404(LessUrl, shortcode=shortcode)
-        print(obj)
         return HttpResponseRedirect(obj.url)
 

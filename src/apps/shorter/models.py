@@ -8,7 +8,9 @@ from django_hosts.resolvers import reverse
 
 SHORTCODE_MAX = getattr(settings, "SHORTCODE_MAX", 15)
 
+
 class LessUrlManager(models.Manager):
+
     def all(self, *args, **kwargs):
         qs = super(LessUrlManager, self).all(*args, **kwargs).filter(active=True)
         return qs
@@ -53,6 +55,12 @@ class LessUrl(models.Model):
         return set(self.url)
 
     def get_short_url(self):
-        url_path = reverse('scode', kwargs={'shortcode': self.shortcode}, host='www', scheme='http')
-        print(url_path)
+        url_path = reverse(
+            'scode',
+            kwargs={
+                'shortcode': self.shortcode
+            },
+            host='www',
+            scheme='http'
+        )
         return url_path
