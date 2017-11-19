@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'src.urls'
 ROOT_HOSTCONF = 'hosts'
 DEFAULT_HOST = 'www'
 
@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'wsgi.application'
+WSGI_APPLICATION = 'src.wsgi.application'
 
 
 # Database
